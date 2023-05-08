@@ -1,0 +1,15 @@
+{% extends 'todo_app/layout.html' %}
+
+
+{% block content %}
+
+    <form method="POST" action="">
+
+        {% csrf_token %}
+        <a href="{% url 'tasks' %}">Back</a>
+        <p>Delete this item? [ {{ task }} ]</p>
+        <input type="submit" value="Delete">
+
+    </form>
+
+{% endblock content %}

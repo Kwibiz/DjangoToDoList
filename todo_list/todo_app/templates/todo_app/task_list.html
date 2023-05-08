@@ -1,0 +1,48 @@
+{% extends 'todo_app/layout.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+    {% block content %}
+
+        {% if request.user.is_authenticated %}
+            <h2>Hello, {{ request.user|title }}, you have <span style="color:red">{{ count }}</span> unfinished task{{ count|pluralize:'s'}}!</h2>
+            <a href="{% url 'logout' %}">Log Out</a>
+        {% endif %}
+
+        <h1>My List |  <a href="{% url 'task-create' %}" style="color: yellow">Create Task</a></h1>
+        <!-- <h2>You have {{ count }} unfinished task(s)</h2> -->
+        <form method="GET">
+            <input type="text" name="search-area" value="{{ search_input }}">
+            <input type="submit" value="Search">
+        </form>
+        <form method="GET" action="{% url 'tasks' %}" name="all-tasks">
+            <input type="submit" value="Show all tasks" >
+        </form>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.title }}</td>
+                <td><a href="{% url 'task' task.id %}">View</a></td>
+                <td><a href="{% url 'task-update' task.id %}">Edit</a></td>
+                <td><a href="{% url 'task-delete' task.id %}">Delete</a></td>
+            </tr>
+            {% empty %}
+                <h3>No item</h3>
+            {% endfor %}
+        </table>
+
+    {% endblock content %}
+</body>
+</html>
