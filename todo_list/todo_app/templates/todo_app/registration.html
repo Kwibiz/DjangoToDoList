@@ -1,17 +1,29 @@
 {% extends 'todo_app/layout.html' %}
-<h1>Registration</h1>
 
 {% block content %}
 
-    <form method="POST" action="">
+    <div class="header">
+        <h1>Registation</h1>
+    </div>
 
-        {% csrf_token %}
-        {{ form.as_p }}
+    <div class="body">
+        <form method="POST" action="">
 
-        <input type="submit" value="Registrate">
+            {% csrf_token %}
+            <label>{{ form.username.label }}</label>
+            {{ form.username }}
 
-    </form>
+            <label>{{ form.password1.label }}</label>
+            {{ form.password1 }}
 
-    <p>Already have an account? <a href="{% url 'login' %}">Log In</a></p>
+            <label>{{ form.password2.label }}</label>
+            {{ form.password2 }}
+
+            <input style="margin-top: 15px;" class="button" type="submit" value="Registrate">
+
+            <p>Already have an account? <a href="{% url 'login' %}">Log In</a></p>
+        </form>
+
+    </div>
 
 {% endblock content %}

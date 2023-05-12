@@ -3,13 +3,18 @@
 
 {% block content %}
 
-    <form method="POST" action="">
+    <div class="header">
+        <a href="{% url 'tasks' %}">&#8592; Back</a>
+    </div>
+    <div class="body">
+       <form method="POST" action="">
 
-        {% csrf_token %}
-        <a href="{% url 'tasks' %}">Back</a>
-        <p>Delete this item? [ {{ task }} ]</p>
-        <input type="submit" value="Delete">
-
-    </form>
+           {% csrf_token %}
+           <p>Delete this item? [ {{ task }} ]</p>
+           <input type="submit" class="button" value="Delete">
+    
+        </form>
+    </div>
+   
 
 {% endblock content %}

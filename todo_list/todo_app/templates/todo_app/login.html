@@ -1,17 +1,22 @@
 {% extends 'todo_app/layout.html' %}
-<h1>Log In</h1>
 
 {% block content %}
 
-    <form method="POST" action="">
+    <div class="header">
+        <h1>Log In</h1>
+    </div>
 
-        {% csrf_token %}
-        {{ form.as_p }}
+    <div class="body">
+        <form method="POST" action="">
 
-        <input type="submit" value="Log In">
+            {% csrf_token %}
+            {{ form.as_p }}
 
-    </form>
+            <input class="button" type="submit" value="Log In">
 
-    <p>Don't have an account? <a href="{% url 'registration' %}">Registration</a></p>
+            <p>Don't have an account? <a href="{% url 'registration' %}">Registration</a></p>
+        </form>
+
+    </div>
 
 {% endblock content %}
